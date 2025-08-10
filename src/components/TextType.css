@@ -1,0 +1,22 @@
+.text-type {
+  display: inline-block;
+  white-space: pre-wrap;
+  font-size: 56px;
+  width: 100%;
+  text-align: center;
+  margin-top: 10%;
+  font-weight: 600;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.text-type__cursor {
+  margin-left: 0.25rem;
+  display: inline-block;
+  opacity: 1;
+  color: #000;
+  font-size: 56px;
+}
+
+.text-type__cursor--hidden {
+  display: none;
+}
