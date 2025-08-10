@@ -93,7 +93,7 @@ export default function Navbar() {
           }}>
             <Button sx={{
               fontFamily: "Righteous, sans-serif",
-            }} color="inherit" href="/tenant/login">Already User ?</Button>
+            }} color="inherit" href="/tenant/dashboard  ">Already User ?</Button>
             <Button
               variant="contained"
               component={Link} // Use Link component
