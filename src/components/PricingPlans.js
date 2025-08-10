@@ -107,7 +107,7 @@ export default function Pricing() {
 
                     }}
                 >
-                    Choose the plan that's perfect for your team. Our flexible options scale with your needs.
+                    Choose the plan that is perfect for your team. Our flexible options scale with your needs.
                 </Typography>
             </Box>
 
