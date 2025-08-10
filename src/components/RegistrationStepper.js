@@ -230,7 +230,7 @@ export default function RegistrationStepper() {
                 <Box sx={{ textAlign: 'center' }}>
                   <Typography variant="h5">Thank you for registering! 🎉</Typography>
                   <Typography color="text.secondary" sx={{ mb: 4 }}>
-                    Your registration is complete. We're excited to have you on board.
+                    Your registration is complete. We are excited to have you on board.
                   </Typography>
                   <Button variant="contained" component={Link} href="/" sx={{ borderRadius: 8, px: 6, py: 1.5 }}>
                     Go to Login
