@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
+import Link from 'next/link';
 
 const LogoText = styled(Typography)({
   fontWeight: 600,
@@ -92,17 +93,18 @@ export default function Navbar() {
           }}>
             <Button sx={{
               fontFamily: "Righteous, sans-serif",
-            }} color="inherit" href="/signin">Sign in</Button>
+            }} color="inherit" href="/tenant/login">Already User ?</Button>
             <Button
               variant="contained"
-              href="/register"
+              component={Link} // Use Link component
+              href="/tenant/register"
               sx={{
                 fontFamily: "Righteous, sans-serif",
                 backgroundColor: "rgba(0, 42, 209, 0.9)",
                 "&:hover": { backgroundColor: "#6d28d9" },
               }}
             >
-              Register
+              Get Started
             </Button>
           </Box>
         </Toolbar>

@@ -28,7 +28,7 @@ const apps = [
     {
         platform: "Android App",
         icon: <Android sx={{ fontSize: 40 }} />,
-        image: "https://via.placeholder.com/400x600.png?text=Android+App+Screenshot",
+        image: "android.png",
         description: "Get the full power of our app on your Android device. Fast, reliable, and secure.",
         features: [
             "HD voice and video",
@@ -40,7 +40,7 @@ const apps = [
     {
         platform: "iOS App",
         icon: <Apple sx={{ fontSize: 40 }} />,
-        image: "https://via.placeholder.com/400x600.png?text=iOS+App+Screenshot",
+        image: "apple.png",
         description: "Experience our app on your iPhone. Designed for a seamless and intuitive user experience.",
         features: [
             "FaceTime-like video calls",
@@ -53,7 +53,7 @@ const apps = [
     {
         platform: "Web App",
         icon: <Language sx={{ fontSize: 40 }} />,
-        image: "https://via.placeholder.com/800x600.png?text=Web+App+Screenshot",
+        image: "globe.svg",
         description: "No downloads needed. Access all features directly from your browser on any desktop.",
         features: [
             "Screen sharing & co-Browse",
@@ -134,11 +134,12 @@ export default function Product() {
                                 component="img"
                                 height="200"
                                 image={app.image}
+                                
                                 alt={`${app.platform} screenshot`}
-                                sx={{ objectFit: 'cover' }}
+                                sx={{ objectFit: 'contain', marginTop: 4,}}
                             />
                             <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                                <Box sx={{ color: 'primary.main', mb: 1 }}>{app.icon}</Box>
+                                {/* <Box sx={{ color: 'primary.main', mb: 1 }}>{app.icon}</Box> */}
                                 <Typography variant="h5" component="h3" fontWeight="bold" gutterBottom sx={{ fontFamily: 'Righteous, sans-serif' }}>
                                     {app.platform}
                                 </Typography>
