@@ -1,15 +1,7 @@
-    "use client";
+"use client";
 
 import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import IconButton from "@mui/material/IconButton";
+import { AppBar, Toolbar, Typography, Button, Box, Avatar, Menu, MenuItem, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const LogoText = styled(Typography)({
@@ -19,8 +11,8 @@ const LogoText = styled(Typography)({
   fontFamily: "Righteous, sans-serif",
 });
 
-export default function MeetNav() {
-  const [loggedIn, setLoggedIn] = useState(true); // Simulate logged-in state
+export default function MeetNav({ activeTab, onTabChange }) {
+  const [loggedIn, setLoggedIn] = useState(true);
   const [username] = useState("John Doe");
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -48,42 +40,32 @@ export default function MeetNav() {
             <LogoText>connectify</LogoText>
           </Box>
 
-          {/* Logged-in navigation */}
-          {loggedIn ? (
+          {/* Navigation */}
+          {loggedIn && (
             <Box sx={{ display: "flex", gap: 3 }}>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Schedule Meeting
-              </Button>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Video Call
-              </Button>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Join
-              </Button>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Other
-              </Button>
-            </Box>
-          ) : (
-            // Show original menu if not logged in
-            <Box sx={{ display: "flex", gap: 3 }}>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Home
-              </Button>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Product
-              </Button>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Pricing
-              </Button>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Contact
-              </Button>
+              {["schedule", "video", "join", "other"].map((tab) => (
+                <Button
+                  key={tab}
+                  sx={{
+                    fontFamily: "Righteous, sans-serif",
+                    fontWeight: activeTab === tab ? "bold" : "normal",
+                    borderBottom: activeTab === tab ? "2px solid rgba(0,42,209,0.9)" : "none",
+                    borderRadius: 0,
+                  }}
+                  color="inherit"
+                  onClick={() => onTabChange(tab)}
+                >
+                  {tab === "schedule" && "Schedule Meeting"}
+                  {tab === "video" && "Video Call"}
+                  {tab === "join" && "Join"}
+                  {tab === "other" && "Other"}
+                </Button>
+              ))}
             </Box>
           )}
 
-          {/* Right side - username & avatar if logged in */}
-          {loggedIn ? (
+          {/* Right Side */}
+          {loggedIn && (
             <Box display="flex" alignItems="center" gap={1}>
               <Typography
                 sx={{
@@ -98,75 +80,39 @@ export default function MeetNav() {
                 <Avatar alt={username} src="/profile.jpg" />
               </IconButton>
               <Menu
-  anchorEl={anchorEl}
-  open={Boolean(anchorEl)}
-  onClose={handleMenuClose}
-  PaperProps={{
-    sx: {
-      background: "rgba(255, 255, 255, 0.15)",
-      backdropFilter: "blur(12px)",
-      borderRadius: "12px",
-      boxShadow: "0 4px 30px rgba(0,0,0,0.1)",
-      border: "1px solid rgba(255, 255, 255, 0.25)",
-      mt: 1.5,
-      minWidth: 160,
-      fontFamily: "Righteous, sans-serif",
-      color: "#000",
-    },
-  }}
->
-  <MenuItem
-    onClick={handleMenuClose}
-    sx={{
-      "&:hover": {
-        backgroundColor: "rgba(0, 42, 209, 0.15)",
-      },
-    }}
-  >
-    Profile
-  </MenuItem>
-  <MenuItem
-    onClick={handleMenuClose}
-    sx={{
-      "&:hover": {
-        backgroundColor: "rgba(0, 42, 209, 0.15)",
-      },
-    }}
-  >
-    Settings
-  </MenuItem>
-  <MenuItem
-    onClick={() => {
-      setLoggedIn(false);
-      handleMenuClose();
-    }}
-    sx={{
-      color: "red",
-      "&:hover": {
-        backgroundColor: "rgba(255, 0, 0, 0.15)",
-      },
-    }}
-  >
-    Logout
-  </MenuItem>
-</Menu>
-
-            </Box>
-          ) : (
-            <Box sx={{ display: "flex", gap: 2 }}>
-              <Button sx={{ fontFamily: "Righteous, sans-serif" }} color="inherit">
-                Already User?
-              </Button>
-              <Button
-                variant="contained"
-                sx={{
-                  fontFamily: "Righteous, sans-serif",
-                  backgroundColor: "rgba(0, 42, 209, 0.9)",
-                  "&:hover": { backgroundColor: "#6d28d9" },
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                PaperProps={{
+                  sx: {
+                    background: "rgba(255, 255, 255, 0.15)",
+                    backdropFilter: "blur(12px)",
+                    borderRadius: "12px",
+                    boxShadow: "0 4px 30px rgba(0,0,0,0.1)",
+                    border: "1px solid rgba(255, 255, 255, 0.25)",
+                    mt: 1.5,
+                    minWidth: 160,
+                    fontFamily: "Righteous, sans-serif",
+                    color: "#000",
+                  },
                 }}
               >
-                Get Started
-              </Button>
+                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    setLoggedIn(false);
+                    handleMenuClose();
+                    
+                  }}
+                  sx={{
+                    color: "red",
+                    "&:hover": { backgroundColor: "rgba(255,0,0,0.15)" },
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </Menu>
             </Box>
           )}
         </Toolbar>
